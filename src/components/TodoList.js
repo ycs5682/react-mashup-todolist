@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TodoItem from './TodoItem';
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -9,7 +10,14 @@ const TodoListBlock = styled.div`
 `;
 
 function TodoList() {
-  return <TodoListBlock>TodoList</TodoListBlock>;
+  return (
+    <TodoListBlock>
+      <TodoItem text='プロジェクトの作成' done={true} />
+      <TodoItem text='コンポネートのスタイリング' done={true} />
+      <TodoItem text='Contextの作成' done={false} />
+      <TodoItem text='機能実装' done={false} />
+    </TodoListBlock>
+  );
 }
 
 export default TodoList;
