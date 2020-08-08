@@ -11,15 +11,13 @@ const TodoListBlock = styled.div`
 `;
 
 function TodoList() {
-  const state = useTodoState;
-  console.log(state);
+  const todos = useTodoState();
 
   return (
     <TodoListBlock>
-      <TodoItem text='プロジェクトの作成' done={true} />
-      <TodoItem text='コンポネートのスタイリング' done={true} />
-      <TodoItem text='Contextの作成' done={false} />
-      <TodoItem text='機能実装' done={false} />
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} />
+      ))}
     </TodoListBlock>
   );
 }

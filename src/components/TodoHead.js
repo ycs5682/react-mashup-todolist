@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTodoState } from '../TodoContext';
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
@@ -29,11 +30,22 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
+  const todos = useTodoState();
+  const undoneTasks = todos.filter((todo) => !todo.done);
+  const today = new Date();
+  const dateString = today.toLocaleDateString('ja-JP', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  const dayName = today.toLocaleDateString('ja-JP', {
+    weekday: 'long'
+  });
   return (
     <TodoHeadBlock>
-      <h1>2020年8月6日</h1>
-      <div className='day'>木曜日</div>
-      <div className='tasks-left'>todo</div>
+      <h1>{dateString}</h1>
+      <div className='day'>{dayName}</div>
+      <div className='tasks-left'>残りのtodoは {undoneTasks.length} 個です。</div>
     </TodoHeadBlock>
   );
 }
